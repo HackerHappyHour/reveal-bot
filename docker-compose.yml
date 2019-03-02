@@ -1,0 +1,38 @@
+version: "3"
+services:
+
+  reveal:
+    image: nginx:latest
+    volumes:
+      - ./node_modules/reveal.js:/usr/share/nginx/html
+    ports:
+      - "8080:80"
+    networks:
+      - webchat
+
+  rocket_chat:
+    image: rocket.chat:0.74.3
+    environment:
+      - MONGO_URL=mongodb://rc_mongo_db/mydb
+    ports:
+     - "3000:3000"
+    networks:
+     - rcdb
+     - webchat
+    depends_on:
+     - rc_mongo_db
+
+  rc_mongo_db:
+    image: mongo:3.0
+    networks:
+      - rcdb
+    volumes:
+     - rcdb:/data/db
+    command: --smallfiles
+
+networks:
+  rcdb:
+  webchat:
+
+volumes:
+  rcdb:
