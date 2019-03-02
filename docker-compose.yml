@@ -1,6 +1,15 @@
 version: "3"
 services:
 
+  reveal:
+    image: nginx:latest
+    volumes:
+      - ./node_modules/reveal.js:/usr/share/nginx/html
+    ports:
+      - "8080:80"
+    networks:
+      - webchat
+
   rocket_chat:
     image: rocket.chat:0.74.3
     environment:
