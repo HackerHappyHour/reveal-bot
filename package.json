@@ -23,6 +23,6 @@
   "homepage": "https://github.com/HackerHappyHour/reveal-bot#readme",
   "dependencies": {},
   "devDependencies": {
-    "reveal.js": "^3.7.0"
+    "reveal.js": "^3.9.2"
   }
 }
